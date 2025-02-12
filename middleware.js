@@ -65,5 +65,5 @@ export default async function middleware(req) {
 
 // 7) Matcher config
 export const config = {
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|members|public).*)'],
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|images|members).*)'],
 }
