@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { WorkshopCarousel } from "@/components/WorkshopCarousel";
+import PartnersSection from "@/components/PartnersSection";
 
 const testimonials = [
   {
@@ -94,6 +95,7 @@ export default function Home() {
       </section>
 
       <WorkshopCarousel />
+      <PartnersSection />
     </div>
   );
 }

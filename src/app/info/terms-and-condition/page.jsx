@@ -28,7 +28,7 @@ export default function TermsAndConditions() {
           <Section
             icon={<Users className="h-6 w-6 text-purple-500" />}
             title="Code of Conduct & Access Restrictions"
-            content="Participation in HavenHeart workshops and events is restricted to youth between the ages of 15-35. If we determine that a user does not meet this age requirement or engages in harassment during workshops or events, they will be banned from accessing the website."
+            content="Participation in HavenHeart workshops and events is restricted to youth between the ages of 18-35. If we determine that a user does not meet this age requirement or engages in harassment during workshops or events, they will be banned from accessing the website."
           />
 
           <p className="text-sm text-gray-600">

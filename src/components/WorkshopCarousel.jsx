@@ -55,7 +55,7 @@ export function WorkshopCarousel() {
       id: 1,
       title: "French Tech connect - Kickoff Edition 2025",
       image:
-        "/images/placeholder.webp",
+        "/empowering-workshop.avif",
       date: "Tuesday",
       time: "7:00 PM",
       venue: "Lion Brewery Co",
@@ -67,7 +67,7 @@ export function WorkshopCarousel() {
       id: 2,
       title: "GGD CNY Lou Hei 2025",
       image:
-        "/images/placeholder.webp",
+        "/empowering-workshop.avif",
       date: "Thursday",
       time: "6:00 PM",
       venue: "The Alps Residences",
@@ -77,7 +77,7 @@ export function WorkshopCarousel() {
     {
       id: 3,
       title: "Tech Meetup 2025",
-      image: "/images/placeholder.webp",
+      image: "/empowering-workshop.avif",
       date: "Friday",
       time: "8:00 PM",
       venue: "The Gateway",
@@ -87,7 +87,7 @@ export function WorkshopCarousel() {
     {
       id: 4,
       title: "Design Workshop",
-      image: "/images/placeholder.webp",
+      image: "/empowering-workshop.avif",
       date: "Saturday",
       time: "2:00 PM",
       venue: "Design Studio",
@@ -97,7 +97,7 @@ export function WorkshopCarousel() {
     {
       id: 5,
       title: "Startup Networking Night",
-      image: "/images/placeholder.webp",
+      image: "/empowering-workshop.avif",
       date: "Sunday",
       time: "7:00 PM",
       venue: "The Working Capitol",
