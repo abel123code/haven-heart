@@ -14,7 +14,6 @@ import UpcomingCoursesPage from "./UpcomingCoursesPage";
 export default async function HomePage() {
   // Connect to the database
   await connectToDB();
-
   let userWorkshops = []; // Initialize userWorkshops here
 
   try {
