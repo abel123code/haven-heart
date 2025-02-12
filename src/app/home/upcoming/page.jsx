@@ -1,4 +1,5 @@
 // app/page.js (Server Component)
+export const dynamic = 'force-dynamic';
 import connectToDB from "@/lib/mongodb";
 import Workshop from "../../../../models/Workshop";
 import ClientCoursesPage from "../ClientCoursesPage";
