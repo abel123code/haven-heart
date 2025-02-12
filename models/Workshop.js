@@ -12,6 +12,8 @@ const WorkshopSchema = new mongoose.Schema(
     image: String,
     duration: String,
     category: String,
+    price: Number,
+    website: { type: String },
   },
   { timestamps: true }
 );

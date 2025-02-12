@@ -85,7 +85,7 @@ export default function UserPreferenceForm({ userEmail }) {
         <CardHeader>
           <CardTitle>Mental Health Support Form</CardTitle>
           <CardDescription>
-            Please fill out this form to help us understand your needs better.
+            Please fill out this form to help us understand your needs better. [Est 1 min]
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -236,8 +236,6 @@ export default function UserPreferenceForm({ userEmail }) {
               <div className="flex flex-col space-y-2">
                 {[
                   "Workshops",
-                  "Group Therapy Sessions",
-                  "Individual Therapy Sessions",
                   "Community Events",
                   "Online Resources",
                 ].map((preference) => (

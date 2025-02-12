@@ -123,11 +123,10 @@ export default function DetailedCourseCard({
             {/* Image Container */}
             <div className="w-full md:w-48 h-48 relative rounded-lg overflow-hidden bg-black">
               {image ? (
-                <Image
+                <img
                   src={image}
                   alt={title}
-                  fill
-                  className="object-cover"
+                  className="object-cover w-full h-full"
                 />
               ) : (
                 <p className="text-white">No Image</p>

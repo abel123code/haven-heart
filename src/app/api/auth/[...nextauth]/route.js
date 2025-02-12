@@ -64,14 +64,18 @@ export const authOptions = ({
           const dbUser = await User.findOne({ email: user.email });
           if (dbUser) {
             token.firstTimeLogin = dbUser.firstTimeLogin;
+            token.role = dbUser.role;
           }
         } else if (token.email) {
           // Subsequent sessions: Fetch latest firstTimeLogin
           const dbUser = await User.findOne({ email: token.email });
           if (dbUser) {
             token.firstTimeLogin = dbUser.firstTimeLogin;
+            token.role = dbUser.role;
           }
         }
+
+        
     
         return token; // Return the updated token
       },
@@ -81,7 +85,8 @@ export const authOptions = ({
         if (user) {
           session.user.id = user._id.toString();
           session.user.username = user.username;
-          session.user.firstTimeLogin = user.firstTimeLogin; // Check for first-time login
+          session.user.firstTimeLogin = user.firstTimeLogin; 
+          session.user.role = user.role;
         }
         return session;
       },   

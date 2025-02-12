@@ -157,9 +157,12 @@ export function LoginForm({ className, ...props }) {
       </Card>
       <div className="text-center text-xs text-muted-foreground">
         By clicking continue, you agree to our{" "}
-        <a href="/info/terms-and-condition" className="underline underline-offset-4 hover:text-primary">
+        <Link href="/info/terms-and-condition" className="underline underline-offset-4 hover:text-primary">
           Terms of Service
-        </a>{" "}
+        </Link>{" "}
+        <div className="text-center text-xs text-muted-foreground">
+          We respect your privacy. No personal data is stored or collected beyond authentication.
+        </div>
       </div>
     </div>
   );

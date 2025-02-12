@@ -34,7 +34,8 @@ const RegisterForm = () => {
             setServerSuccess("Registration successful. Please verify your email before login!");
         }
         } catch (error) {
-        setServerError(error.message || "Something went wrong");
+            console.log('error:::', error)
+            setServerError(error.message || "Something went wrong");
         }
     }
 

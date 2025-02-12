@@ -1,4 +1,4 @@
-import Image from "next/image";
+
 import { Users, Clock8, Menu, PersonStanding, MapPin } from "lucide-react";
 import { useRouter } from "next/navigation";
 import ClientCountdownButton from "@/app/home/upcoming/ClientCountdownButton";
@@ -15,12 +15,13 @@ export default function BasicCourseCard({
   sessionDate,   
   sessionLocation,
   course, 
+  isAdmin=false,
 }) {
   const router = useRouter();
 
   // Handle navigation when the card is clicked
   const handleCardClick = () => {
-    router.push(`/home/${_id}`);
+    !isAdmin ? router.push(`/home/${_id}`) : router.push(`/admin/workshops/edit/${_id}`);
   };
 
   if (isUpcoming) {
@@ -30,7 +31,7 @@ export default function BasicCourseCard({
         className="bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 hover:shadow-lg hover:cursor-pointer flex flex-col"
         onClick={handleCardClick}
       >
-        <Image
+        <img
           src={image}
           alt={title}
           width={300}
@@ -83,7 +84,7 @@ export default function BasicCourseCard({
         className="bg-white rounded-lg shadow-md overflow-hidden hover:scale-105 hover:shadow-lg hover:cursor-pointer flex flex-col"
         onClick={handleCardClick}
       >
-        <Image
+        <img
           src={image}
           alt={title}
           width={300}

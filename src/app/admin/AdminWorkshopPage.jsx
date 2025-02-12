@@ -5,7 +5,7 @@ import BasicCourseCard from "@/components/BasicCourseCard";
 import SearchAndFilter from "@/components/SearchAndFilter";
 import { useRouter } from "next/router";
 
-export default function ClientCoursesPage({ courses }) {
+export default function AdminWorkshopPage({ courses }) {
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [filteredCourses, setFilteredCourses] = useState(courses);
@@ -37,8 +37,8 @@ export default function ClientCoursesPage({ courses }) {
     return (
         <div className="min-h-screen bg-stone-100">
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-semibold text-red-500 mb-6 flex justify-center pb-2 border-b-2">
-            Passion blooms from participation.
+            <h1 className="text-3xl font-semibold text-black mb-6 flex justify-center pb-2 border-b-2">
+                Manage Workshop Page
             </h1>
 
             {/* Pass down props to manage filters */}
@@ -60,6 +60,7 @@ export default function ClientCoursesPage({ courses }) {
                     category={course.category}
                     duration={course.duration}
                     sessions={course.sessions}
+                    isAdmin={true}
                 />
             ))}
             </div>

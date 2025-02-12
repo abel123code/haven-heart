@@ -15,6 +15,7 @@ export default async function middleware(req) {
   const isPublic = publicRoutes.includes(nextUrl.pathname)
   const isAuthRoute = authRoutes.includes(nextUrl.pathname)
   const isOnboarding = nextUrl.pathname === '/home/onboarding'
+  const isAdminRoute = nextUrl.pathname.startsWith("/admin");
 
   // Public route: always allow
   if (isPublic) {
@@ -44,6 +45,12 @@ export default async function middleware(req) {
   if (isLoggedIn) {
     if (token.firstTimeLogin && nextUrl.pathname !== '/home/onboarding') {
       return NextResponse.redirect(new URL('/home/onboarding', nextUrl));
+    }
+  }
+
+  if (isAdminRoute) {
+    if (!isLoggedIn || token.role !== "admin") {
+      return NextResponse.redirect(new URL("/unauthorized", nextUrl));
     }
   }
 

@@ -17,7 +17,7 @@ export async function registerUserAction(formData) {
     email: formData.email,
     password: formData.password,
     confirmPassword: formData.confirmPassword,
-  });
+  }); 
 
   // Check password match
   if (data.password !== data.confirmPassword) {
