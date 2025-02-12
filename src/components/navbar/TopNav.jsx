@@ -69,7 +69,12 @@ export function Navbar() {
                   <DropdownItem key="logout" color="danger">
                     <Button
                       type="button"
-                      onClick={() => signOut({ callbackUrl: "/" })}
+                      onClick={async () => {
+                        await signOut({ callbackUrl: "/" }); // Ensure signOut runs fully
+                        localStorage.clear(); // Clear any local storage items
+                        sessionStorage.clear(); // Clear session storage items
+                        document.cookie = "next-auth.session-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                      }}
                       className="w-full text-left"
                     >
                       Logout
