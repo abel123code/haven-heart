@@ -20,12 +20,6 @@ export function Navbar() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      // Redirect to /login
-      router.push("/login");
-    }
-  }, [status, router]);
 
   // Loading state
   if (status === "loading") {
@@ -37,8 +31,6 @@ export function Navbar() {
       </nav>
     );
   }
-
-
 
   return (
     <nav className="bg-white shadow-sm">
