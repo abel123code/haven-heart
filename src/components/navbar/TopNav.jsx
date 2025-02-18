@@ -17,7 +17,6 @@ import { IoMenu } from "react-icons/io5";
 export function Navbar() {
   const { data: session, status } = useSession();
 
-
   // Loading state
   if (status === "loading") {
     return (
@@ -47,7 +46,7 @@ export function Navbar() {
           </div>
 
           {/* Right side: Auth-based dropdowns */}
-          <div className="flex items-center flex-col gap-1 sm:flex-row">
+          <div className="flex items-center gap-1 sm:flex-row">
             {session ? (
               // Logged-in User Menu
               <Dropdown>
