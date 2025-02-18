@@ -24,7 +24,7 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "Haven Hearts",
-  description: "For A Good Cause",
+  description: "The spot for hearts to grow",
 };
 
 export default function RootLayout({ children }) {

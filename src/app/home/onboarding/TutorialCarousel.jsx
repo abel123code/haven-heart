@@ -39,42 +39,26 @@ export default function TutorialCarousel({ onFinish }) {
         {/* Carousel Title */}
         <h2 className="text-xl font-bold mb-4 text-center">Quick Tour</h2>
 
-        {/* Display Current Slide */}
-        <div className="mb-4 flex justify-center">
-            <Image
-                src={tutorialSlides[currentSlideIndex]}
-                alt={`Tutorial step ${currentSlideIndex + 1}`}
-                width={600}
-                height={400}
-                className="object-contain"
-                // or "object-cover", etc.
-            />
+        {/* Video Section */}
+        <div className="mb-4">
+          <video
+            className="w-full h-auto object-contain"
+            src="/images/OnboardingVideo.mp4" 
+            // Place the file in your "public/videos" folder 
+            // or use a URL from a CDN (e.g. S3, Azure, etc.)
+            controls
+            playsInline  // Especially helpful on iOS so it doesn't open fullscreen
+            // optional:
+            // muted
+            // autoPlay
+            // loop
+          />
         </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-center items-center space-x-4">
-          <Button
-            variant="outline"
-            onClick={handlePrevSlide}
-            disabled={currentSlideIndex === 0}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            onClick={handleNextSlide}
-            disabled={currentSlideIndex === tutorialSlides.length - 1}
-          >
-            Next
-          </Button>
+        {/* Finish Button */}
+        <div className="text-center">
+          <Button onClick={onFinish}>Finish</Button>
         </div>
-
-        {/* Finish Button for last slide */}
-        {currentSlideIndex === tutorialSlides.length - 1 && (
-          <div className="mt-4 text-center">
-            <Button onClick={onFinish}>Finish</Button>
-          </div>
-        )}
       </div>
     </div>
   );
