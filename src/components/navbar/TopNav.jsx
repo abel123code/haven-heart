@@ -15,11 +15,10 @@ import { Spinner } from "@heroui/react";
 import { IoMenu } from "react-icons/io5";
 
 export function Navbar() {
-  // 1) Grab the session object
   const { data: session, status } = useSession();
-  //console.log('session data:::', session);
 
-  // 2) Optional loading state
+
+  // Loading state
   if (status === "loading") {
     return (
       <nav className="bg-white shadow-sm flex items-center">
@@ -40,69 +39,80 @@ export function Navbar() {
               href="/"
               className="flex items-center justify-center bg-red-500 border-2 border-red-500 px-4 py-1 rounded-md"
             >
-              <span className="text-white text-xl font-semibold font-poppins">Haven Heart</span>
+              <span className="text-white text-xl font-semibold font-poppins">
+                Haven Heart
+              </span>
               <FaHeart className="text-white ml-1" />
             </Link>
-            {/* <p className="text-xs text-red-500 font-semibold">The spot for hearts to grow</p> */}
           </div>
-          {/* Right side: Conditional - user dropdown or login button */}
-          <div className="flex items-center flex-col gap-1 sm:flex-row">
 
+          {/* Right side: Auth-based dropdowns */}
+          <div className="flex items-center flex-col gap-1 sm:flex-row">
             {session ? (
-              // If logged in: NextUI dropdown
+              // Logged-in User Menu
               <Dropdown>
                 <DropdownTrigger>
                   <Button variant="ghost" className="px-3 py-2">
-                    {session.user?.email ?? "My Account"}
+                    {/* {session.user?.email ?? "My Account"} */}
+                    <img
+                      src={session.user?.image ?? "/images/user.png"}
+                      alt="User Avatar"
+                      className="w-8 h-8 rounded-full"
+                    />
                   </Button>
                 </DropdownTrigger>
+
                 <DropdownMenu aria-label="User Menu">
-                  <DropdownItem key="about">
-                    <Link href="/about">About</Link>
-                  </DropdownItem>
-                  <DropdownItem key="home">
-                    <Link href="/home">Home</Link>
-                  </DropdownItem>
-                  <DropdownItem key="my-workshops">
-                    <Link href="/home/upcoming">Upcoming Workshops</Link>
-                  </DropdownItem>
-                  <DropdownItem key="logout" color="danger">
-                    <Button
-                      type="button"
-                      onClick={async () => {
-                        await signOut({ callbackUrl: "/" }); // Ensure signOut runs fully
-                        localStorage.clear(); // Clear any local storage items
-                        sessionStorage.clear(); // Clear session storage items
-                        document.cookie = "next-auth.session-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-                      }}
-                      className="w-full text-left"
-                    >
-                      Logout
-                    </Button>
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-            ) : (
-              <Dropdown>
-                <DropdownTrigger>
-                  <IoMenu className="text-3xl hover:bg-slate-300  " />
-                </DropdownTrigger>
-                <DropdownMenu aria-label="Guest Menu">
                   <DropdownSection title="Explore">
-                    <DropdownItem key="about">
-                      <Link href="/info/about-us">About Us</Link>
+                    <DropdownItem key="about" href="/info/about-us">
+                      About Us
                     </DropdownItem>
-                    <DropdownItem key="workshops">
-                      <Link href="/info/faq">FAQ</Link>
+                    <DropdownItem key="home" href="/home">
+                      Home
+                    </DropdownItem>
+                    <DropdownItem key="my-workshops" href="/home/upcoming">
+                      Upcoming Workshops
                     </DropdownItem>
                   </DropdownSection>
                   <DropdownSection title="Account">
-                    <DropdownItem key="login" color="primary">
-                      <Link href="/login">
-                        <Button variant="ghost" className="w-full text-left">
-                          Log in
-                        </Button>
-                      </Link>
+                    <DropdownItem
+                      key="logout"
+                      color="danger"
+                      // For signOut, use onClick instead of href
+                      onClick={async () => {
+                        await signOut({ callbackUrl: "/" });
+                        localStorage.clear();
+                        sessionStorage.clear();
+                        document.cookie =
+                          "next-auth.session-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                      }}
+                    >
+                      Logout
+                    </DropdownItem>                                      
+                  </DropdownSection>
+                </DropdownMenu>
+              </Dropdown>
+            ) : (
+              // Guest Menu
+              <Dropdown>
+                <DropdownTrigger>
+                  <IoMenu className="text-3xl hover:bg-slate-300" />
+                </DropdownTrigger>
+
+                <DropdownMenu aria-label="Guest Menu">
+                  {/* If @heroui supports DropdownSection */}
+                  <DropdownSection title="Explore">
+                    <DropdownItem key="about" href="/info/about-us">
+                      About Us
+                    </DropdownItem>
+                    <DropdownItem key="workshops" href="/info/faq">
+                      FAQ
+                    </DropdownItem>
+                  </DropdownSection>
+
+                  <DropdownSection title="Account">
+                    <DropdownItem key="login" color="primary" href="/login">
+                      Log in
                     </DropdownItem>
                   </DropdownSection>
                 </DropdownMenu>
@@ -118,14 +128,14 @@ export function Navbar() {
                   </Button>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Admin Menu">
-                  <DropdownItem key="manage-users">
-                    <Link href="/admin/users">Manage Users</Link>
+                  <DropdownItem key="manage-users" href="/admin/users">
+                    Manage Users
                   </DropdownItem>
-                  <DropdownItem key="manage-workshops">
-                    <Link href="/admin">Manage Workshops</Link>
+                  <DropdownItem key="manage-workshops" href="/admin">
+                    Manage Workshops
                   </DropdownItem>
-                  <DropdownItem key="add-workshops">
-                    <Link href="/admin/workshops/add">Add Workshops</Link>
+                  <DropdownItem key="add-workshops" href="/admin/workshops/add">
+                    Add Workshops
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>

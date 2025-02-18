@@ -61,7 +61,6 @@ export function WorkshopCarousel() {
       venue: "Lion Brewery Co",
       price: "Free",
       organizer: "La French Tech Singapore",
-      followers: 775,
     },
     {
       id: 2,
