@@ -42,11 +42,11 @@ export default function Home() {
               the first step towards a healthier mind today.
             </p>
             <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-              <Button size="lg" className="w-full sm:w-auto">
-                <Link href="/register">
+              <Link href="/register" passHref>
+                <Button size="lg" className="w-full sm:w-auto">
                   Sign up for free
-                </Link>
-              </Button>
+                </Button>
+              </Link>
               <p className="mt-3 text-sm text-gray-500 flex flex-col items-center lg:items-start">
                 No credit card required. Start your journey to better mental health now.
                 <Link href={'/info/terms-and-condition'}>
