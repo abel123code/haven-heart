@@ -1,6 +1,4 @@
-import { redirect } from "next/dist/server/api-utils"
-import Image from "next/image"
-import Link from "next/link"
+import Link from "next/link";
 
 export default function PartnersSection() {
   const partners = [
@@ -19,7 +17,7 @@ export default function PartnersSection() {
       logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1200px-Google_2015_logo.svg.png",
       redirectUrl: "https://www.google.com/",
     }
-  ]
+  ];
 
   return (
     <section className="py-16 px-4 max-w-7xl mx-auto">
@@ -34,20 +32,16 @@ export default function PartnersSection() {
             key={partner.name}
             className="flex items-center justify-center p-4 bg-white rounded-lg hover:shadow-lg transition-shadow duration-300"
           >
-            <div className="relative w-full h-30">
-                <Link href={partner.redirectUrl} target="_blank" className="flex items-center justify-center">
-                    <img
-                        src={partner.logo || "/placeholder.svg"}
-                        alt={partner.name}
-                        className="object-contain w-[90%] h-[90%]"
-                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-                    />
-                </Link>
-            </div>
+            <Link href={partner.redirectUrl} target="_blank" className="flex items-center justify-center">
+              <img
+                src={partner.logo || "/placeholder.svg"}
+                alt={partner.name}
+                className="object-contain w-32 md:w-40 lg:w-48 h-auto transition-all duration-300"
+              />
+            </Link>
           </div>
         ))}
       </div>
     </section>
-  )
+  );
 }
-
