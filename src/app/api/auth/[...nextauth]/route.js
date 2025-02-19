@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import connectToDB from "@/lib/mongodb";
 import User from "../../../../../models/User";
 
+
 export const authOptions = ({
     providers: [
       GoogleProvider({
@@ -59,6 +60,7 @@ export const authOptions = ({
         // console.log('jwt callback called...........')
         // console.log('jwt called with: ', { token, user });
         // If user exists (on sign-in), fetch `firstTimeLogin` from the database
+        await connectToDB();
         if (user) {
           // Initial sign-in
           const dbUser = await User.findOne({ email: user.email });
