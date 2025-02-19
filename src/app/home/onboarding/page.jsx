@@ -4,7 +4,7 @@ import UserPreferenceForm from "./UserPreferanceForm";
 
 export default async function OnboardingPage() {
   const session = await getServerSession(authOptions);
-  console.log('session data from onboarding:::::',session)
+  //console.log('session data from onboarding:::::',session)
   // if (!session) {
   //   // Redirect to login if not authenticated
   //   console.log("No session, redirecting to /login");

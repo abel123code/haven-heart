@@ -5,7 +5,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import bcrypt from "bcryptjs";
 import connectToDB from "@/lib/mongodb";
 import User from "../../../../../models/User";
-
+//everytime ur callback function is called, ensure you connect to db first. that is the first step
 
 export const authOptions = ({
     providers: [

@@ -8,7 +8,7 @@ export default async function middleware(req) {
   
   // Retrieve the user session token with next-auth/jwt
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET })
-  console.log('middleware logging token:::', token)
+  //console.log('middleware logging token:::', token)
   const isLoggedIn = !!token
 
   //const isPublic = publicRoutes.some(route => nextUrl.pathname.startsWith(route))

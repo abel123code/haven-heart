@@ -2,32 +2,12 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-
-// Example tutorial slide images
-const tutorialSlides = [
-  "/images/f1.jpg",
-  "/images/f2.jpg",
-  "/images/f3.jpg",
-];
 
 export default function TutorialCarousel({ onFinish }) {
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-
-  const handlePrevSlide = () => {
-    setCurrentSlideIndex((prev) => Math.max(prev - 1, 0));
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlideIndex((prev) =>
-      Math.min(prev + 1, tutorialSlides.length - 1)
-    );
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       {/* Modal Container */}
-      <div className="bg-white p-4 rounded-md shadow relative w-96 max-w-full">
+      <div className="relative bg-white p-4 rounded-md shadow w-full max-w-4xl mx-4">
         {/* Close Button (top-right) */}
         <button
           onClick={onFinish}
@@ -36,45 +16,26 @@ export default function TutorialCarousel({ onFinish }) {
           &times;
         </button>
 
-        {/* Carousel Title */}
-        <h2 className="text-xl font-bold mb-4 text-center">Quick Tour</h2>
+        {/* Title */}
+        <h2 className="text-xl font-bold mb-4 text-center">Quick Video Tour</h2>
 
-        {/* Display Current Slide */}
-        <div className="mb-4 flex justify-center">
-            <Image
-                src={tutorialSlides[currentSlideIndex]}
-                alt={`Tutorial step ${currentSlideIndex + 1}`}
-                width={600}
-                height={400}
-                className="object-contain"
-                // or "object-cover", etc.
+        {/* Responsive Video Wrapper */}
+        <div className="mb-4">
+          <div className="aspect-w-16 aspect-h-9">
+            <video
+              src="/images/OnboardingVideo.mp4" 
+              // or wherever your video is hosted
+              className="w-full h-full object-contain"
+              controls
+              playsInline
             />
-        </div>
-
-        {/* Navigation Buttons */}
-        <div className="flex justify-center items-center space-x-4">
-          <Button
-            variant="outline"
-            onClick={handlePrevSlide}
-            disabled={currentSlideIndex === 0}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            onClick={handleNextSlide}
-            disabled={currentSlideIndex === tutorialSlides.length - 1}
-          >
-            Next
-          </Button>
-        </div>
-
-        {/* Finish Button for last slide */}
-        {currentSlideIndex === tutorialSlides.length - 1 && (
-          <div className="mt-4 text-center">
-            <Button onClick={onFinish}>Finish</Button>
           </div>
-        )}
+        </div>
+
+        {/* Finish Button */}
+        <div className="text-center">
+          <Button onClick={onFinish}>Finish</Button>
+        </div>
       </div>
     </div>
   );
