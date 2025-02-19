@@ -300,11 +300,11 @@ export default function UserPreferenceForm({ userEmail }) {
 
 
       {/* Show the tutorial pop-up (carousel) if user submitted successfully */}
-      {showTutorial && (
+      {/* {showTutorial && (
         <TutorialCarousel
           onFinish={handleFinishTutorial}
         />
-      )}
+      )} */}
     </>
   );
 }
