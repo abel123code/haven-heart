@@ -15,15 +15,33 @@ import {
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { Brain, UserPlus, Heart, Cog } from "lucide-react";
+import { Brain, UserPlus, Heart, Cog, ChevronDown, ChevronUp } from "lucide-react";
 import { preferencesSchema } from "@/lib/schemas/preferancesSchema";
 import TutorialCarousel from "./TutorialCarousel";
+import { MentalHealthCard } from "./MentalHealthCard";
+import { motion, AnimatePresence } from "framer-motion"
+
+const mentalHealthCards = [
+  { title: "Anxiety", description: "Feelings of tension, worried thoughts long after you last encountered a stressor. Some physical changes like increased blood pressure." },
+  { title: "Depression", description: "Low mood/ loss of pleasure or interest in activities for long periods of time. Some signs are: Disturbed sleep, changes to appetite, feelings of low self-worth, thoughts about death and hopelessness for the future." },
+  { title: "Stress", description: "State of worry/ mental isolation due to a difficult situation. Short-term as it only lasts for as long as the problem exists." },
+  { title: "Burnout", description: "A syndrome arising due to chronic workplace stress that is not successfully managed. Some signs are: energy depletion/ exhaustion, negativism/ cynicism of one's job, reduced professional efficacy." },
+  { title: "Grief", description: "Anguish felt after losing someone significant. You may feel sorrowful or regretful. Some physical signs are: Confusion, separation anxiety, obsessive dwelling on the past, apprehension about the future." },
+  { title: "Loneliness", description: "Occurs when one perceives a gap between their desires for social connection and the actual experiences of it (i.e. feelings of a distant, non-meaningful relationship, even for someone with many friends!)." }
+];
 
 export default function UserPreferenceForm({ userEmail }) {
   const router = useRouter();
   const { data: session, update } = useSession(); // Use useSession hook
 
   const [showTutorial, setShowTutorial] = useState(false);
+  const [expandedCards, setExpandedCards] = useState([]);
+  const [isExpanded, setIsExpanded] = useState(false)
+  const toggleCard = (title) => {
+    setExpandedCards((prev) =>
+      prev.includes(title) ? prev.filter((t) => t !== title) : [...prev, title]
+    );
+  };
 
   // Initialize React Hook Form with Zod resolver
   const {
@@ -192,20 +210,50 @@ export default function UserPreferenceForm({ userEmail }) {
                 <p className="text-red-500 text-sm">{errors.challenges.message}</p>
               )}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {["Anxiety", "Depression", "Stress", "Burnout", "Grief", "Loneliness"].map(
-                  (challenge) => (
-                    <div key={challenge} className="flex items-center space-x-2">
+                {mentalHealthCards.map(({ title, description }) => (
+                  <div key={title} className="space-y-2">
+                    {/* Checkbox */}
+                    <div className="flex items-center space-x-2 cursor-pointer" onClick={() => toggleCard(title)}>
                       <input
                         type="checkbox"
-                        id={challenge.toLowerCase()}
+                        id={title.toLowerCase()}
                         {...register("challenges")}
-                        value={challenge}
+                        value={title}
+                        checked={expandedCards.includes(title)}
                         className="form-checkbox h-5 w-5 text-blue-600"
+                        onChange={() => toggleCard(title)}
                       />
-                      <Label htmlFor={challenge.toLowerCase()}>{challenge}</Label>
+                      <label htmlFor={title.toLowerCase()} className="font-medium text-gray-800">{title}</label>          
+                      {isExpanded ? (
+                        <ChevronUp className="h-5 w-5 text-gray-600" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-gray-600" />
+                      )}
                     </div>
-                  )
-                )}
+
+                    {/* Animated Card */}
+                    <AnimatePresence>
+                      {expandedCards.includes(title) && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <Card className="bg-white shadow-md border-l-4 border-blue-500 mt-2">
+                            <CardHeader className="flex flex-row items-center gap-2">
+                              <Heart className="h-5 w-5 text-red-500 fill-current" />
+                              <h3 className="text-lg font-bold">{title}</h3>
+                            </CardHeader>
+                            <CardContent>
+                              <p className="text-sm text-gray-600">{description}</p>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ))}
                 {/* Additional "Other" field */}
                 <div className="mt-2">
                   <Label htmlFor="otherChallenge">
@@ -218,6 +266,7 @@ export default function UserPreferenceForm({ userEmail }) {
                     {...register("otherChallenge")}
                     className="mt-1 block w-full rounded-md border-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-2 px-3 sm:text-sm"
                   />
+
                   {errors.otherChallenge && (
                     <p className="text-red-500 text-sm">
                       {errors.otherChallenge.message}

@@ -15,6 +15,7 @@ import { Spinner } from "@heroui/react";
 import { IoMenu } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export function Navbar() {
   const { data: session, status } = useSession();
@@ -57,10 +58,12 @@ export function Navbar() {
                 <DropdownTrigger>
                   <Button variant="ghost" className="px-3 py-2">
                     {/* {session.user?.email ?? "My Account"} */}
-                    <img
+                    <Image
                       src={session.user?.image ?? "/images/user.png"}
                       alt="User Avatar"
                       className="w-8 h-8 rounded-full"
+                      width={32}
+                      height={32}
                     />
                   </Button>
                 </DropdownTrigger>
@@ -75,6 +78,9 @@ export function Navbar() {
                     </DropdownItem>
                     <DropdownItem key="my-workshops" href="/home/upcoming">
                       Upcoming Workshops
+                    </DropdownItem>
+                    <DropdownItem key="quick-tour" href="/info/quick-tour">
+                      Quick Tour
                     </DropdownItem>
                   </DropdownSection>
                   <DropdownSection title="Account">
@@ -110,6 +116,9 @@ export function Navbar() {
                     </DropdownItem>
                     <DropdownItem key="workshops" href="/info/faq">
                       FAQ
+                    </DropdownItem>
+                    <DropdownItem key="quick-tour" href="/info/quick-tour">
+                      Quick Tour
                     </DropdownItem>
                   </DropdownSection>
 

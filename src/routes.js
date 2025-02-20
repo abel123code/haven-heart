@@ -3,7 +3,8 @@ export const publicRoutes = [
     '/info/about-us',  
     '/info/faq',
     '/images',
-    '/info/terms-and-condition'
+    '/info/terms-and-condition',
+    '/info/quick-tour'
 ]
 
 export const authRoutes = [
