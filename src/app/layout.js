@@ -23,8 +23,24 @@ const poppins = Poppins({
 });
 
 export const metadata = {
-  title: "Haven Hearts",
-  description: "The spot for hearts to grow",
+  title: 'Havenheart SG | The spot for hearts to grow',
+  description:
+    'Havenheart SG is a non-profit dedicated to streamlining the mental health journey for youths in Singapore—fostering a resilient generation that thrives emotionally.',
+  keywords: [
+    'havenheart',
+    'havenheartsg',
+    'mental health',
+    'youth mental health',                                           
+    'non-profit',
+    'singapore',
+  ],
+  openGraph: {
+    title: 'Havenheart SG',
+    description:
+      'A non-profit bridging the gap between youths and mental health in Singapore. Join us in fostering a resilient generation.',
+    url: 'https://www.havenheartsg.org/',
+    images: ['https://media.licdn.com/dms/image/v2/D560BAQH4DmACGRGWwQ/company-logo_200_200/company-logo_200_200/0/1731252639104?e=1749081600&v=beta&t=z_NzCeIS43fmZyMAJ7kYtYbo_jEeQgrgEzChCXmq3to'],
+  },
 };
 
 export default function RootLayout({ children }) {

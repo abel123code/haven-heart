@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { WorkshopCarousel } from "@/components/WorkshopCarousel";
 import PartnersSection from "@/components/PartnersSection";
+import Head from "next/head";
 
 const testimonials = [
   {
