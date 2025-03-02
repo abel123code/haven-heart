@@ -4,7 +4,9 @@ export const publicRoutes = [
     '/info/faq',
     '/images',
     '/info/terms-and-condition',
-    '/info/quick-tour'
+    '/info/quick-tour',
+    '/robots.txt',
+    '/sitemap.xml',
 ]
 
 export const authRoutes = [
