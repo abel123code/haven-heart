@@ -74,7 +74,7 @@ export function Navbar() {
                       About Us
                     </DropdownItem>
                     <DropdownItem key="home" href="/home">
-                      Home
+                      All Workshops
                     </DropdownItem>
                     <DropdownItem key="my-workshops" href="/home/upcoming">
                       Upcoming Workshops

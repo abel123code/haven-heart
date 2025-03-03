@@ -149,7 +149,7 @@ function AddWorkshopForm() {
             id="title" 
             placeholder="Enter workshop title..."
             {...register("title")} 
-            className="input w-full lg:w-3/4 border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="input w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             {errors.title && <p className="text-red-500 text-sm">{errors.title.message}</p>}
         </div>
@@ -160,7 +160,7 @@ function AddWorkshopForm() {
             id="organiser" 
             placeholder="Enter organiser name..."
             {...register("organiser")} 
-            className="input w-full lg:w-3/4 border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="input w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             {errors.organiser && <p className="text-red-500 text-sm">{errors.organiser.message}</p>}
         </div>
@@ -171,7 +171,7 @@ function AddWorkshopForm() {
             id="shortDescription" 
             placeholder="Enter short description..."
             {...register("shortDescription")} 
-            className="textarea w-full lg:w-3/4 border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="textarea w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             {errors.shortDescription && <p className="text-red-500 text-sm">{errors.shortDescription.message}</p>}
         </div>
@@ -182,7 +182,7 @@ function AddWorkshopForm() {
             id="fullDescription" 
             placeholder="Enter full description..."
             {...register("fullDescription")} 
-            className="textarea w-full lg:w-3/4 border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="textarea w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             {errors.fullDescription && <p className="text-red-500 text-sm">{errors.fullDescription.message}</p>}
         </div>
@@ -193,7 +193,7 @@ function AddWorkshopForm() {
             id="image" 
             placeholder="Enter image URL..."
             {...register("image")} 
-            className="input w-full lg:w-3/4 border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="input w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
         </div>
@@ -207,7 +207,7 @@ function AddWorkshopForm() {
             id="price"
             placeholder="e.g. 10, 10.5, 10.00, 99.99"
             {...register("price")}
-            className="w-full lg:w-3/4 border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            className="w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
             {errors.price && (
             <p className="text-red-500 text-sm">{errors.price.message}</p>
