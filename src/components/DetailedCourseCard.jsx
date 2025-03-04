@@ -10,6 +10,16 @@ import { Button } from "@/components/ui/button";
 import { ArrowBigLeft, Clock, Users, CheckCircle, Loader2 } from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
 import { getSession } from "next-auth/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { useRouter } from 'next/navigation'
+
 
 export default function DetailedCourseCard({ 
   workshop 
@@ -32,6 +42,8 @@ export default function DetailedCourseCard({
   // We'll store just the session _id here. You could store entire object, if needed.
   const [selectedSessionId, setSelectedSessionId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const route = useRouter();
 
   // A helper function to get the session object by ID (if needed)
   const getSelectedSession = () => {
@@ -42,68 +54,95 @@ export default function DetailedCourseCard({
     setSelectedSessionId(key);
   };
 
-  // Trigger purchase/checkout with Stripe
   const handlePurchase = async () => {
     if (!selectedSessionId) {
       toast("Please select a session first.");
       return;
     }
 
-    // Get the current user session
     const session = await getSession();
     if (!session) {
-      toast("You need to be logged in to purchase a session.");
+      toast("You need to be logged in to register.");
       return;
     }
 
-    const currentUserId = session.user.id; 
-
-    // If you need the session’s priceId, you can retrieve it:
+    const currentUserId = session.user.id;
     const selectedSession = getSelectedSession();
 
-    // Check availability
+    // Check session availability
     const availability = selectedSession.capacity - (selectedSession.participants?.length || 0);
     if (availability <= 0) {
-      toast("Sorry, this session is fully booked. Please select another session.");
+      toast("This session is fully booked.");
       return;
     }
 
-    // Check if the user has already purchased this session
+    // Check if user has already registered
     const hasAlreadyPurchased = selectedSession.participants?.includes(currentUserId);
     if (hasAlreadyPurchased) {
-      toast("You have already purchased this session. Please choose another session.");
+      toast("You are already registered for this session.");
       return;
     }
-    // Start loading spinner
-    setIsLoading(true);
-    
 
+    // **If the session is free, show confirmation popup**
+    if (price === 0) {
+      setShowConfirmModal(true);
+      return;
+    }
+
+    // **Paid session - Proceed with Stripe payment**
     try {
+      setIsLoading(true);
       const priceId = selectedSession?.priceId;
-      // console.log('selectedSession:::', selectedSession)
-      // console.log('priceId:::', priceId)
       const res = await fetch("/api/pay/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          sessionId: selectedSessionId, priceId 
-        }),
+        body: JSON.stringify({ sessionId: selectedSessionId, priceId }),
       });
-      const data = await res.json();
 
+      const data = await res.json();
       if (res.ok && data.url) {
-        // Redirect to Stripe Checkout
-        window.location.href = data.url;
+        window.location.href = data.url; // Redirect to Stripe
       } else {
         toast(`Error: ${data.error || "Unknown error"}`);
-        setIsLoading(false);
       }
     } catch (err) {
       console.error("Purchase error:", err);
-      toast("Something went wrong with the purchase.Please try again later!");
+      toast("Something went wrong. Please try again.");
+    } finally {
       setIsLoading(false);
     }
   };
+
+  // Handle confirmation for free session
+  const confirmFreeRegistration = async () => {
+    setShowConfirmModal(false);
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/sessions/register-free", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId: selectedSessionId,
+          workshopId: _id, // <-- Make sure this matches your workshop ID variable
+        }),
+      });
+
+      if (res.ok) {
+        toast("You have successfully registered for this session!");
+        route.push("/home/upcoming");
+      } else {
+        const data = await res.json();
+        toast(`Error: ${data.error || "Could not register"}`);
+      }
+    } catch (err) {
+      console.error("Free session registration error:", err);
+      toast("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   return (
     <div className="min-h-screen bg-stone-100">
@@ -263,6 +302,25 @@ export default function DetailedCourseCard({
                 {isLoading ? "Processing..." : "Purchase"}
               </Button>
             </div>
+
+            {/* Confirmation Modal for Free Sessions */}
+            {showConfirmModal && (
+              <Dialog
+                title="Confirm Registration"
+                onClose={() => setShowConfirmModal(false)}
+              >
+                <h1 className="text-xl font-semibold">Are you sure you want to register for this free session?</h1>
+                <p className="">A confirmation email will be sent to you 3 days prior to confirm your attendence</p>
+                <div className="flex justify-end mt-4">
+                  <Button variant="secondary" onClick={() => setShowConfirmModal(false)}>
+                    Cancel
+                  </Button>
+                  <Button variant="primary" onClick={confirmFreeRegistration}>
+                    Confirm
+                  </Button>
+                </div>
+              </Dialog>
+            )}
           </div>
         </Card>
       </div>

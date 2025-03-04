@@ -29,7 +29,7 @@ const sessionSchema = z.object({
     (val) => Number(val),
     z.number().min(1, "Capacity must be at least 1")
   ),
-  priceId: z.string().nonempty("Price ID is required"),
+  priceId: z.string().optional(),
 });
 
 // Schema for a workshop
@@ -54,7 +54,9 @@ const workshopSchema = z.object({
   price: z
     .string()
     .regex(/^\d+(\.\d{1,2})?$/, "Price must be a valid monetary amount with up to 2 decimals")
-    .transform((val) => parseFloat(val)),
+    .transform((val) => parseFloat(val))
+    .refine((val) => val >= 0, { message: "Price cannot be negative" }),
+
 });
 
 // Default form values
@@ -224,13 +226,18 @@ function AddWorkshopForm() {
                 {...register("duration.hours")}
                 className="input border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 >
-                <option value="0">0</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
                 </select>
             </div>
 
@@ -243,6 +250,7 @@ function AddWorkshopForm() {
                 {...register("duration.minutes")}
                 className="input border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 >
+                <option value="0">0</option>
                 <option value="15">15</option>
                 <option value="30">30</option>
                 <option value="45">45</option>
@@ -321,7 +329,7 @@ function AddWorkshopForm() {
                 <input 
                 id={`sessions.${index}.priceId`} 
                 type="text" 
-                placeholder="Enter price ID from Stripe..."
+                placeholder="Enter price ID from Stripe...If workshop is free, leave blank"
                 {...register(`sessions.${index}.priceId`)} 
                 className="input w-full border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />

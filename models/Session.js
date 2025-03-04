@@ -12,7 +12,7 @@ const SessionSchema = new mongoose.Schema(
     date: { type: Date, required: true },
     location: { type: String, required: true },
     capacity: { type: Number, required: true },
-    priceId: { type: String, required: true }, 
+    priceId: { type: String, required: false }, 
     participants: [
       {
         type: mongoose.Schema.Types.ObjectId,
