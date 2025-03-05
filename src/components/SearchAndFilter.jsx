@@ -7,7 +7,7 @@ export default function SearchAndFilter({
   setSelectedCategory
 }) {
   // Example categories:
-  const categories = ["Music", "Dance", "Art", "Coding", "Business"];
+  const categories = ["Social Events", "Mental Health Events"];
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);

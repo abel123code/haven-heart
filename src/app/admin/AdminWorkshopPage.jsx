@@ -37,9 +37,12 @@ export default function AdminWorkshopPage({ courses }) {
     return (
         <div className="min-h-screen bg-stone-100">
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-semibold text-black mb-6 flex justify-center pb-2 border-b-2">
+            <h1 className="text-3xl font-semibold text-black mb-2 flex justify-center pb-2">
                 Manage Workshop Page
             </h1>
+            <p className="text-xl text-black mb-6 flex justify-center pb-2 border-b-2">
+                Edit all activities on this page.
+            </p>
 
             {/* Pass down props to manage filters */}
             <SearchAndFilter

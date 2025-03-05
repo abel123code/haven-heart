@@ -142,7 +142,12 @@ function AddWorkshopForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 p-6 max-w-2xl mx-auto bg-white shadow-md rounded-lg">
-        <h2 className="text-2xl font-bold mb-4 text-center">Add Workshop</h2>
+        <h1 className="text-3xl font-semibold text-black mb-2 flex justify-center pb-2">
+          Add Workshop Page
+        </h1>
+        <p className="text-xl text-black mb-6 flex justify-center pb-2 border-b-2">
+          Add all activities on this page.
+        </p>
 
         {/* Workshop Details */}
         <div>
@@ -266,7 +271,7 @@ function AddWorkshopForm() {
             <label htmlFor="category" className="block font-medium">Category:</label>
             <input 
             id="category" 
-            placeholder="Enter category..."
+            placeholder="Enter category...(Enter either Social Events OR Mental Health Events)"
             {...register("category")} 
             className="input w-full lg:w-3/4 border border-gray-300 p-2 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
