@@ -39,7 +39,9 @@ export async function POST(request) {
       }
   
       // 7) Create a "free purchase" record
-      const freePaymentIntentId = `FREE_${sessionId}`;
+      const randomString = Math.random().toString(36).slice(2, 8);
+      const freePaymentIntentId = `FREE_${sessionId}_${randomString}`;
+
       const existingPurchase = await Purchase.findOne({
         user: userId,
         workshop: workshopId,
