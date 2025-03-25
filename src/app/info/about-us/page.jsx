@@ -2,6 +2,12 @@ import React from 'react'
 import Image from "next/image"
 import { Heart, Target, BookOpen, Users } from "lucide-react"
 
+export const metadata = {
+  title: 'About Us | Haven HeartSG',
+  description:
+    'Meet the passionate team behind Haven HeartSG, a youth-focused non-profit working to simplify mental health support in Singapore.',
+}
+
 const teamMembers = [
   {
     name: "Darryl",
@@ -92,22 +98,22 @@ const AboutUsPage = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {teamMembers.map((member, index) => (
-              <div key={index} className="border-t pt-6">
+              <article key={index} className="border-t pt-6">
                 <div className="flex items-center mb-4">
                   <Image
                     src={member.image || "/images/user.png"}
-                    alt={member.name}
+                    alt={`Profile picture of ${member.name}`}
                     width={64}
                     height={64}
                     className="rounded-full mr-4 w-[64px] h-[64px] object-cover"
                   />
                   <div>
                     <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
-                    <h4 className="text-md text-gray-600">{member.role}</h4>
+                    <p className="text-md text-gray-600">{member.role}</p>
                   </div>
                 </div>
                 <p className="text-gray-600 text-sm">{member.description}</p>
-              </div>
+              </article>
             ))}
           </div>
         </section>

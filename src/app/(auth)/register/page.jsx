@@ -1,6 +1,11 @@
 import React from 'react'
 import RegisterForm from './register-form'
 
+export const metadata = {
+  title: 'Register | Haven HeartSG',
+  description: 'Sign up for Haven HeartSG to access youth-focused mental health resources, workshops, and support in Singapore.',
+}
+
 const RegisterPage = () => {
   return (
     <div

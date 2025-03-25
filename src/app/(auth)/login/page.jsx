@@ -1,5 +1,10 @@
 import { LoginForm } from "@/app/(auth)/login/login-form"
 
+export const metadata = {
+  title: 'Login | Haven HeartSG',
+  description: 'Log in to your Haven HeartSG account to continue your mental health journey with personalized tools and community support.',
+}
+
 export default function LoginPage() {
   return (
     (

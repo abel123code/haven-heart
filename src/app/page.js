@@ -5,6 +5,12 @@ import { WorkshopCarousel } from "@/components/WorkshopCarousel";
 import PartnersSection from "@/components/PartnersSection";
 import Head from "next/head";
 
+export const metadata = {
+  title: 'Haven HeartSG | Youth Mental Health Support in Singapore',
+  description:
+    'Join Haven HeartSG to access expert-led workshops, personalized guidance, and a supportive mental health community for youths in Singapore.',
+}
+
 const testimonials = [
   {
     name: "Sarah J.",

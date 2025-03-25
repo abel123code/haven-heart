@@ -1,6 +1,12 @@
 import { AlertTriangle, ExternalLink, Mail, Shield, Users } from "lucide-react"
 import Link from "next/link"
 
+export const metadata = {
+  title: 'Terms & Conditions | Haven HeartSG',
+  description:
+    'Read the terms and conditions for using Haven HeartSG, including disclaimers, external links, site availability, and user conduct policies.',
+}
+
 export default function TermsAndConditions() {
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -36,15 +42,15 @@ export default function TermsAndConditions() {
             prior notice.
           </p>
 
-          <div className="flex flex-col items-center justify-center space-x-2 text-sm text-gray-600">
-            <div className="flex gap-2 items-center">
-                <Mail className="h-4 w-4" />
-                <p>For queries, please email the HavenHeart team at</p>
+          <address className="not-italic text-sm text-gray-600 text-center">
+            <div className="flex justify-center items-center gap-2">
+              <Mail className="h-4 w-4" />
+              <p>For queries, please email the HavenHeart team at</p>
             </div>
-            <Link href="mailto:HavenHeartsg@gmail.com" className="text-blue-600 hover:underline">
+            <Link href="mailto:HavenHeartsg@gmail.com" className="text-blue-600 hover:underline block">
               HavenHeartsg@gmail.com
             </Link>
-          </div>
+          </address>
         </div>
       </div>
     </div>

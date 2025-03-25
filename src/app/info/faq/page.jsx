@@ -46,6 +46,11 @@ const helplines = [
   { name: "Institute of Mental Health hotline", number: "6389 2222" },
 ]
 
+export const metadata = {
+  title: 'FAQs & Helplines | Haven HeartSG',
+  description: 'Find answers to common questions about Haven HeartSG and explore mental health helplines available in Singapore.',
+}
+
 export default function FAQ() {
   return (
     <div className="bg-white min-h-screen">
@@ -54,13 +59,13 @@ export default function FAQ() {
 
         <div className="space-y-12 mb-16">
           {faqs.map((faq, index) => (
-            <section key={index}>
+            <article key={index}>
               <div className="flex items-start mb-2">
                 <HelpCircle className="w-6 h-6 text-gray-400 mr-3 mt-1 flex-shrink-0" />
                 <h2 className="text-xl font-semibold text-gray-700">{faq.question}</h2>
               </div>
               <p className="text-gray-600 ml-9">{faq.answer}</p>
-            </section>
+            </article>
           ))}
         </div>
 
@@ -69,15 +74,15 @@ export default function FAQ() {
             <Phone className="w-6 h-6 text-gray-400 mr-3" />
             <h2 className="text-2xl font-semibold text-gray-700">Helplines</h2>
           </div>
-          <div className="space-y-4">
+          <ul className="space-y-4">
             {helplines.map((helpline, index) => (
-              <div key={index} className="border-t pt-4">
+              <li key={index} className="border-t pt-4">
                 <h3 className="text-lg font-semibold text-gray-800">{helpline.name}</h3>
                 {helpline.number && <p className="text-gray-600">{helpline.number}</p>}
                 {helpline.email && <p className="text-gray-600">{helpline.email}</p>}
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       </main>
     </div>
