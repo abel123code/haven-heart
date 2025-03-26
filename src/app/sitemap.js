@@ -13,7 +13,7 @@ export default function sitemap() {
             priority: 1,
         },
         {
-            url: 'https://www.havenheartsg.org/info/register',
+            url: 'https://www.havenheartsg.org/register',
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.8,
@@ -32,6 +32,12 @@ export default function sitemap() {
         },
         {
             url: 'https://www.havenheartsg.org/info/faq',
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        {
+            url: 'https://www.havenheartsg.org/info/terms-and-condition',
             lastModified: new Date(),
             changeFrequency: 'weekly',
             priority: 0.8,
